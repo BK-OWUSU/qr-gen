@@ -46,7 +46,7 @@ export const QrGenerator = () => {
             <h3 className="text-gray-500 lg:text-xl text-center text-wrap">Quickly generate static or dynamic QR codes for links, contacts, menus, and more—no fluff, just a simple, efficient tool for professionals.</h3>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:flex-row bg-black h-fit  w-[100%] lg:h-[55%] lg:w-[90%] rounded-4xl text-white p-6 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:flex-row bg-black h-fit  w-[100%] lg:h-[55%] lg:w-[90%] rounded-4xl text-white p-6 mb-5">
             <div>
                 <div className='flex justify-between w-full'>
                     <h2 className="text-2xl font-bold">Create a QR Code</h2>

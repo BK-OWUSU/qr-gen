@@ -15,18 +15,18 @@ const PageMain = () => {
     }
 
   return (
-    <main className="h-screen">
-        <div className="w-full h-fit py-1  px-2 lg:px-6 flex justify-between shadow-2xl">
+    <main className="h-screen p-2 mb-3">
+        <div className="w-full h-fit py-1 px-2 lg:px-6 flex justify-between shadow-2xl mb-20 lg:mb-0">
             <div className='flex justify-center items-center rounded-full overflow-hidden'>
                 <img src={logo} alt="Logo" className="w-6 h-6 lg:h-10 lg:w-10 rounded-full"/>
             </div>
             <div className='flex gap-4 items-center border-l-2 pl-5 p-1'>
-                <a onClick={handleGenerateQr} className={`${baseClass} ${activeLink ? activeClass: '' }`}>Generate QR Code</a>
-                <a onClick={handleScanQr} className={`${baseClass} ${activeLink ? '': activeClass }`}>Scan QR Code</a>
+                <a onClick={handleGenerateQr} className={`${baseClass} ${activeLink ? activeClass: '' }`}>Generate QR</a>
+                <a onClick={handleScanQr} className={`${baseClass} ${activeLink ? '': activeClass }`}>Scan QR</a>
             </div>
         </div>
         {/* Body */}
-        <div className="h-full flex justify-center items-center">
+        <div className="h-full flex justify-center items-center my-10">
             {activeLink ? (
                 <QrGenerator />
                 ) : (
