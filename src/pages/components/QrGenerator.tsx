@@ -41,12 +41,12 @@ export const QrGenerator = () => {
 
   return (
     <main className="flex flex-col justify-center items-center gap-8 h-full p-2">
-        <div className="flex flex-col gap-4 justify-center items-center">
-            <h1 className="font-bold text-xl text-center lg:text-3xl">The QR Code Generator – Instant, free, professional</h1>
-            <h3 className="text-gray-500 lg:text-xl text-center text-wrap">Quickly generate static or dynamic QR codes for links, contacts, menus, and more—no fluff, just a simple, efficient tool for professionals.</h3>
+        <div className="flex flex-col gap-4 justify-center items-center mt-16">
+            <h1 className="font-bold text-[1rem] text-center lg:text-3xl">The QR Code Generator – Instant, free, professional</h1>
+            <h3 className="text-gray-500 lg:text-xl text-[0.9rem] text-center text-wrap">Quickly generate static or dynamic QR codes for links, contacts, menus, and more—no fluff, just a simple, efficient tool for professionals.</h3>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:flex-row bg-black h-fit  w-[100%] lg:h-[55%] lg:w-[90%] rounded-4xl text-white p-6 mb-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:flex-row bg-black h-fit lg:w-[90%] rounded-4xl text-white p-6 mb-5">
             <div>
                 <div className='flex justify-between w-full'>
                     <h2 className="text-2xl font-bold">Create a QR Code</h2>
@@ -55,11 +55,26 @@ export const QrGenerator = () => {
                 <div className="flex flex-col gap-3 mt-6 ">
                     <div className="flex flex-col" >
                         <label className='lg:text-xl font-semibold mb-2' htmlFor="gen_title">Enter file title (optional):</label>
-                        <input value={title} onChange={(e)=> setTitle(e.target.value) } type="text" id='gen_title' placeholder="Name of your file" className="p-2 bg-white text-black placeholder:text-gray-500 rounded-lg lg:p-3 lg:text-lg lg:rounded-2xl mb-3" />
+                        <input 
+                            value={title} 
+                            onChange={(e)=> setTitle(e.target.value) } 
+                            type="text" 
+                            id='gen_title' 
+                            placeholder="Name of your file" 
+                            className="p-2 bg-white text-black placeholder:text-gray-500 rounded-lg lg:p-3 lg:text-lg lg:rounded-2xl mb-3" />
                     </div>
                     <div className="flex flex-col" >
-                        <label className='lg:text-xl font-semibold mb-2' htmlFor="gen_url">Enter your URL:</label>
-                        <input value={url} onChange={(e)=> setUrl(e.target.value) } type="text" id='gen_url' placeholder="http://your-website.com" className="p-2 bg-white text-black placeholder:text-gray-500 rounded-lg lg:p-3 lg:text-lg lg:rounded-2xl mb-3" />
+                        <label className='lg:text-xl font-semibold mb-2' htmlFor="gen_url">Enter URL:</label>
+                        <input 
+                            value={url} 
+                            onChange={(e)=> {
+                                setUrl(e.target.value)
+                                if (error) setError(null)
+                            }} 
+                            type="text" 
+                            id='gen_url' 
+                            placeholder="http://your-website.com" 
+                            className="p-2 bg-white text-black placeholder:text-gray-500 rounded-lg lg:p-3 lg:text-lg lg:rounded-2xl mb-3" />
                     </div>
                     <Button 
                         className='bg-white text-black p-6 hover:bg-gray-200 cursor-pointer'

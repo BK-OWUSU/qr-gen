@@ -5,7 +5,7 @@ import { QrScanner } from "./components/QrScanner";
 
 const PageMain = () => {
     const [activeLink, setActiveLink] = useState<boolean>(true);
-    const baseClass = "lg:text-xl cursor-pointer py-1 text-black transition-all duration-300";
+    const baseClass = "lg:text-xl cursor-pointer text-[0.9rem] py-1 text-black transition-all duration-300";
     const activeClass = "font-semibold border-b-4 border-blue-300";
     const handleGenerateQr = () => {
         setActiveLink(true)
@@ -15,7 +15,7 @@ const PageMain = () => {
     }
 
   return (
-    <main className="h-screen p-2 mb-3">
+    <main className="h-screen mb-3">
         <div className="w-full h-fit py-1 px-2 lg:px-6 flex justify-between shadow-2xl mb-20 lg:mb-0">
             <div className='flex justify-center items-center rounded-full overflow-hidden'>
                 <img src={logo} alt="Logo" className="w-6 h-6 lg:h-10 lg:w-10 rounded-full"/>
@@ -26,7 +26,7 @@ const PageMain = () => {
             </div>
         </div>
         {/* Body */}
-        <div className="h-full flex justify-center items-center my-10">
+        <div className="h-full flex justify-center items-center">
             {activeLink ? (
                 <QrGenerator />
                 ) : (
