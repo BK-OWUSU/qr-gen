@@ -117,4 +117,24 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* CSS For QR Code Scanner */
+
+  #reader {
+    @apply w-[20rem]
+  }
+  
+  #reader__dashboard {
+    @apply flex
+  }
+
+  #reader__dashboard_section {
+    @apply flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center
+  }
+
+  .html5-qrcode-element {
+    @apply bg-black text-white p-2 rounded-2xl !no-underline m-2 cursor-pointer hover:bg-transparent hover:text-black hover:border-2 hover:border-black duration-300;
+  }
+  /* CSS For QR Code Scanner */
 }
+
