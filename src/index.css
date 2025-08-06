@@ -121,7 +121,7 @@
   /* CSS For QR Code Scanner */
 
   #reader {
-    @apply w-[20rem]
+    @apply w-fit
   }
   
   #reader__dashboard {
