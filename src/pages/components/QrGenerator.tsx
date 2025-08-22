@@ -10,6 +10,7 @@ export const QrGenerator = () => {
     const [url, setUrl] = useState<string >('');
     const [title, setTitle] = useState<string >('');
     const [error, setError] = useState<string| null>('');
+    const [isGenerated, setIsGenerated] = useState<boolean>(true)
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     const generateQR = async() => {
@@ -20,19 +21,53 @@ export const QrGenerator = () => {
 
         try {
             await QRCode.toCanvas(canvasRef.current,url , { width:200 });
+            setIsGenerated(false)
+          
         } catch (err) {
              setError('Failed to generate QR code.');
+             canvasRef.current = null;
              console.error(err);
         }
 
     }
 
-    const handleDownload = () => {
+ const resetAll = () => {
+     // Reset states
+  setUrl("");
+  setTitle("");
+  setError(null);
+  setIsGenerated(true);
+
+  // Clear canvas drawing
+  if (canvasRef.current) {
+    const ctx: CanvasRenderingContext2D | null = canvasRef.current.getContext("2d");
+    if (ctx) {
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    }
+  }
+ }
+
+const isCanvasBlank  = (canvas: HTMLCanvasElement) => {
+    const context = canvas.getContext("2d");
+    if (!context) {
+        return true;
+    }
+    const pixelBuffer = new Uint32Array(
+    context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+    );
+    return !pixelBuffer.some(color => color !== 0); 
+}
+
+const handleDownload = () => {
   const canvas = canvasRef.current;
   if (!canvas) return;
 
-  const image = canvas.toDataURL("image/png"); // You can change to "image/jpeg" if needed
+  if (isCanvasBlank(canvas)) {
+    setError("Please generate a QR code before downloading.");
+    return;
+  }
 
+  const image = canvas.toDataURL("image/png"); // You can change to "image/jpeg" if needed
   const link = document.createElement("a");
   link.href = image;
   link.download = title || "qrCode image"; // Set the filename
@@ -76,10 +111,16 @@ export const QrGenerator = () => {
                             placeholder="http://your-website.com" 
                             className="p-2 bg-white text-black placeholder:text-gray-500 rounded-lg lg:p-3 lg:text-lg lg:rounded-2xl mb-3" />
                     </div>
-                    <Button 
-                        className='bg-white text-black p-6 hover:bg-gray-200 cursor-pointer'
-                        onClick={generateQR}
-                        >Generate QR Code</Button>
+                    <div className='flex flex-col gap-2 md:flex-row md:justify-between'>
+                        <Button 
+                            className='bg-white text-black p-6 hover:bg-gray-200 cursor-pointer'
+                            onClick={generateQR}
+                            >Generate QR Code</Button>
+                            <Button 
+                            className='bg-white text-black p-6 hover:bg-gray-200 cursor-pointer'
+                            onClick={resetAll}
+                            >Reset</Button>
+                    </div>
                     <p className='text-red-400 w-full text-center'>{error}</p>    
                 </div>
             </div>
@@ -94,6 +135,7 @@ export const QrGenerator = () => {
                 </div>  
                 <Button 
                     className='bg-white text-black w-fit lg:p-6 hover:bg-gray-200 cursor-pointer mx-auto' 
+                    disabled = {isGenerated}
                     onClick={handleDownload}
                 >
                     Download
