@@ -59,7 +59,7 @@ const PDFMerge = () => {
           </div>
           {/* File picker */}
           <input
-            className="border-2 bg-blue-400 border-gray-300 p-2 rounded-sm cursor-pointer"
+            className="border-2 bg-blue-400  hover:bg-blue-500 border-gray-300 p-2 rounded-sm cursor-pointer"
             type="file"
             multiple
             accept="application/pdf"
